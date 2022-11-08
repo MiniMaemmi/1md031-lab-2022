@@ -1,1 +1,23 @@
-/*empty*/
+
+/* Your comment goes here */
+@import 'https://fonts.googleapis.com/css?family=Pacifico|Dosis';
+@import url("reset.css");
+body {
+    font-family: "Droid Serif", sans-serif;
+    font-size: 12pt;
+}
+ .BURGERSELECT{
+    color: #ff5500;
+ }
+ #idname {
+    text-transform: uppercase;}
+
+
+    .BLACKBACKGROUNDTHINGY{
+        background-color: black;
+         color: white;
+    }   
+
+    .SOMETHINGDIFFERENTTHANBLACKBACKGROUND{
+        
+    }
