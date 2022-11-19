@@ -22,4 +22,4 @@ Your index.html file contains:
     - [ x] House Number (only allowing numbers in this field)
     - [ x] Gender (male, female, do not wish to provide as radio buttons)
 - [ x] A button to place the order
-- [ ] Ensure the website loads when opening http://localhost:8080/
+- [ x] Ensure the website loads when opening http://localhost:8080/

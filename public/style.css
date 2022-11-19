@@ -3,21 +3,72 @@
 @import 'https://fonts.googleapis.com/css?family=Pacifico|Dosis';
 @import url("reset.css");
 body {
-    font-family: "Droid Serif", sans-serif;
+    font-family: arial;
     font-size: 12pt;
+
 }
  .BURGERSELECT{
-    color: #ff5500;
+    background-image: url("https://wallpaperaccess.com/full/104879.jpg");
+    opacity: 0.6;
+    width:auto;height:250px;
+    overflow:hidden
+
  }
- #idname {
-    text-transform: uppercase;}
+ #SELECTBURGERHEADER {
+  
+    width: 100%;
+    height:auto;
+    font-size: 25pt;
+    position: absolute;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
 
 
-    .BLACKBACKGROUNDTHINGY{
-        background-color: black;
+
+
+.BurgerSection{
+background-color: rgb(8, 8, 8);
+color: white;
+border: 21px double #ff0000;;
+}
+
+
+
+
+.OrderInformation{
+    background-color: rgb(8, 8, 8);
+    color: rgb(98, 0, 255);
+    border: 21px dotted #3903fa ;
+    border-radius:25px ;
+}
+
+.BLACKBACKGROUNDTHINGY{
+        background-color: rgb(11, 25, 235);
          color: white;
-    }   
+}   
 
-    .SOMETHINGDIFFERENTTHANBLACKBACKGROUND{
-        
+   
+
+
+    .bolded { font-weight: bold; }
+
+
+button {
+        transition-duration: 0.4s;
+      }
+      
+.button:hover {
+        background-color: #4CAF50; /* Green */
+        color: white;
+      }
+     
+#wrapper {
+        display: grid;   
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
     }
+   #one{grid-column: 1; grid-row: 1;}
+   #two{grid-column: 2; grid-row: 1;}
+   #three{grid-column: 3; grid-row: 1;}

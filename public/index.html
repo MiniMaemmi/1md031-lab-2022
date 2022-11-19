@@ -1,55 +1,74 @@
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="C:\Users\Anton\1md031-lab-2022\public/style.css">
+        <!--link rel="stylesheet" type="text/css" href="C:\Users\Anton\1md031-lab-2022\public/reset.css"-->
+        <link rel="stylesheet" type="text/css" href="C:\Users\Anton\1md031-lab-2022\public/style.css"-->
         
-    <title>mmmmm, burgar</title>
+        
+    <title>mmmmm, burgars</title>
         <meta charset="utf-8"/>
     </head>
     <body>
         <main>
-        <header>
-     <h1>Välkommen till BurgerOnline</h1>
-        </header>
+           
 <section class="BURGERSELECT">
-    <h1> Select ur bruger</h1>
-    This is where you execulte burger selection
+    <h1 id="SELECTBURGERHEADER"> Välkommen till BurgerOnline </h1>
+            
 </section>
 
-<div style="display: inline-block;" >
 
-    <section class="BLACKBACKGROUNDTHINGY">
-    <h1>The Actaully on Fire Burger</h1> 
-    <img src="https://thumbs.dreamstime.com/b/burger-fire-black-background-site-nburger-171834850.jpg" alt="Bruger on fiire"style="width:500px;height:500px;">
-    <h3>
-        Innehåll:
-    </h3>
-    <ul>
-        <li>Gluteen</li>
-        <li>Eld</li>
-        <li>Dina fienders aska</li>
-    </ul>
+
+<section class="BurgerSection">
+    <h1 style="font: size 300%;">Select Your Burger </h1>
+    <div id="wrapper">
+        
+
+        <div id="one" style="width:800px; margin:0 auto; margin-left: 50px;">
+
+            <h1>The Actaully on Fire Burger</h1> 
+                <img src="https://image.shutterstock.com/image-illustration/creative-burger-logo-design-flat-260nw-1946833417.jpg" alt="Bruger on fiire"style="width:500px;height:500px;">
+            <h3>
+                Innehåll:
+            </h3>
+                <ul>
+                    <li>Gluteen</li>
+                    <li>Eld</li>
+                    <li>Dina fienders aska</li>
+                </ul>
+        </div>
+
+        <div id="two" style="width:800px; margin:0 auto;">
+            <h1> En väldigt kall burgare</h1>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz4BR02hPg47ZNzzzi-ftHrVPe6jYD51zISA&usqp=CAU" alt="Kall burgare"   style="width:500px;height:500px;">           
+
+        
+                <h3>
+                    Innehåll 
+                </h3>
+                <ul>
+                    <li>Anti-material</li>
+                    <li>-Eld</li>
+                    <li>Chockladbollar</li> 
+                </ul>
+        </div>
+
+        <div id="three" style="width:800px; margin:0 auto;">
+            <h1> Den Vanliga burgaren</h1>
+                <img src="https://www.allrecipes.com/thmb/PHF_wbUzp-wIt6OYo2cMnt4xuZ4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-ddmfs-4x3-1350-1-f65d5518ecc0435f9791d453ee9cd78f.jpg"alt="Vanlig Burgare"   style="width:500px;height:500px;">
+                <h3>
+                    Innehåll 
+                </h3>
+                    <ul>
+                        <li>"Kött"</li>
+                        <li>Bröd</li>
+                        <li>Något som kan ses som grönsaker</li>
+                    </ul>
+        </div>
+    </div>
+    
 </section>
 
-<section class="SOMETHINGDIFFERENTTHANBLACKBACKGROUND">
-<h1>    En väldigt kall burgare</h1>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz4BR02hPg47ZNzzzi-ftHrVPe6jYD51zISA&usqp=CAU" alt="Bruger on fiire"   style="width:500px;height:500px;">           
-
-<h3>
-    Innehåll:
-</h3>
-<ul>
-    <li>Anti-material</li>
-    <li>-Eld</li>
-    <li>Chockladbollar</li>
-</ul>
-
-</section>
-</div>
-
-
-
-<section id="contact">
+<section class="OrderInformation">
     <h1>
         Customer Information
     </h1>
@@ -108,19 +127,21 @@
 </p>
 
 </section>
-
-<button type="submit">
-    <img src="https://manuals.fibaro.com/wp-content/uploads/2019/05/download.png" style="width:50px;height:50px;">
+<div style="width:800px; margin:0 auto; margin-left: 50px; margin-bottom: 25px;">
+<button class="button" type="submit">
+    <img src="https://manuals.fibaro.com/wp-content/uploads/2019/05/download.png" style="width:100px;height:100px;">
     Send Info
   </button>
+</div>
 
+</div> <!--slutet wrapperklassen-->
 
 
     </main>
     <hr>
 
     <footer>
-        Alla försök till att inskränka på BurgerOnline kommer att bemötas med en direkt-skickad ICBM 
+        Alla försök till att inskränka på BurgerOnline kommer att bemötas med en direkt-skickad <span class="bolded">ICBM</span>
     </footer>
 
     </body>
