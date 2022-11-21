@@ -6,10 +6,7 @@
                 v-bind:burger="burger" 
                 v-bind:key="burger.name"/-->
       </div>
-      <div id="map" v-on:click="addOrder">
-        click here
-      </div>
-  
+      
 
 <section class="BURGERSELECT">
     <h1 id="SELECTBURGERHEADER"> Välkommen till BurgerOnline </h1>
@@ -39,15 +36,14 @@
     <h1>
         Customer Information
     </h1>
-  
-            <input v-model="firstname" required="required" placeholder="First Name" />
+        <form>
+          <input type="text" id="firstname" v-model="formdata.firstname" required="required" placeholder="Ditt första Namn">
             
-            <input v-model="email" required="required" placeholder="E-mail adress" />
             
-            <input v-model="streetadress" required="required" placeholder="Street Adress" />
-            
-            <input v-model="number" required="required" placeholder="House Number">
-            
+          <input type="email" id="email" v-model="formdata.email" required="required" placeholder="E-mail address">
+            <!--input v-model="streetadress" required="required" placeholder="Street Adress" />
+            <input v-model="number" required="required" placeholder="House Number"-->
+          </form>
             
       
     
@@ -63,8 +59,9 @@
         Payment Alternatives
     </h1>
       <p>
-        <label for="Payment Option">Payment Options</label><br>
-          <select id="Payment Option" name="rcp">
+        
+        <label for="paymentoption" id="paymentoption123">Payment Options</label><br>
+          <select id="paymentoption" v-model="formdata.paymentoption"><!--tappade mina förvalda inställningar, och de verkar inte vilja komma tillbaka :()-->
             <option>Endless Suffering </option>
             <option>Percentage of Soul(direct)</option>
             <option>Unborn Child(Terms apply)</option>
@@ -74,12 +71,13 @@
       </p>
 
 
-    <div>
-    <input type="radio" id="MAN" name="GENDER" value="MAN" checked>
+    <div class="genderoptionbutton">
+
+    <input type="radio" id="MAN" value="MAN" checked v-model="formdata.gender">
       <label for="MAN">MAN</label>
-    <input type="radio" id="WOMAN" name="GENDER" value="WOMAN">
+    <input type="radio" id="WOMAN" value="WOMAN" v-model="formdata.gender">
       <label for="MAN">WOMAN</label>
-    <input type="radio" id="OTHER/DO NOT WISH TO PROVIDE" name="GENDER" value="OTHER/DO NOT WISH TO PROVIDE">
+    <input type="radio" id="OTHER/DO NOT WISH TO PROVIDE" value="DO NOT WISH TO PROVIDE" v-model="formdata.gender">
       <label for="OTHER/DO NOT WISH TO PROVIDE">OTHER/DO NOT WISH TO PROVIDE</label>
         </div>
       
@@ -87,12 +85,27 @@
 
 </section>
 <div style="width:800px; margin:0 auto; margin-left: 50px; margin-bottom: 25px;">
-  <button v-on:click="sendInfo"> 
+  <button v-on:click="sendInfo()" id="placeOrderButton" type="submit" value="Place Order"> 
     Send Order
     <img src="https://manuals.fibaro.com/wp-content/uploads/2019/05/download.png" style="width:100px;height:100px;">
   </button>
 
 </div>
+
+<div id="mapclass">
+      
+      <div id="map" v-on:click="setLocation($event)">
+      
+        <div id="dots" v-bind:style="{position:'relative', background: 'url(' + require('../../public/img/polacks.jpg')+ ')' }">
+                 
+                    <div v-bind:location="location" v-bind:style="{ left: this.location.x + 'px', top: this.location.y + 'px', position: 'absolute'}" v-bind:key="'dots'">
+                      T
+                    </div>
+                </div>
+              
+  </div>    
+</div>
+
 
 
 <footer>
@@ -111,17 +124,6 @@ import menu from '../assets/menu.json'
 
 const socket = io();
 
-/*function MenuItem(name,kCal, url, lactose, gluten){
-  this.name=name;
-  this.kCal=KCal;
-  this.lactose;
-  this.gluten;
-  
-    
-}*/
-
-
-
 
 
 
@@ -133,13 +135,18 @@ export default {
   },
   data: function () {
     return {
+      formdata:{firstname:"",email:"",gender:"",paymentoption:""}, 
+      selectedBurgers: [],
       burgers: menu,
-      firstname:"",
-      streetadress:"",
-      email:"",
-      number:"",
+      //firstname:"",
+      //streetadress:"",
+      //email:"",
+      //number:"",
       amountOrdered:0,
       orderedBurgers:{},
+      location: { x: 0,
+            y: 0
+          },
       
 
       
@@ -150,23 +157,43 @@ export default {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
     },
+    sendInfo: function () { //de här namnet borde bytas till något som har med order att göra men men//
+      socket.emit("addOrder", { orderId: this.getOrderNumber(),
+                                details: { x: this.location.x,
+                                           y: this.location.y },
+                                orderItems: this.orderedBurgers,
+                                customer:{
+                                  firstname:this.formdata.firstname,
+                                  email: this.formdata.email,
+                                  gender:this.formdata.gender,
+                                  paymentoption:this.formdata.paymentoption
+
+                                }
+                              }
+                 );
+      
+    },
+    setLocation: function(event){
+    var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                  y: event.currentTarget.getBoundingClientRect().top};
+    this.location.x=event.clientX - 10 - offset.x,
+    this.location.y=event.clientY - 10 - offset.y},
+  
+    
+
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
+                                orderItems: [this.orderedBurgers],
+                                customerData: [this.formdata]
                               }
                  );
-    },
-    sendInfo: function(){
-    console.log("hejhej"),
-    console.log(this.firstname)
-    
-
-  },
-
+      this.location.x = event.clientX;
+      this.location.y = event.clientY;
+                            },
   
   addToOrder:function(event){
     this.orderedBurgers[event.name] = event.amount;
@@ -175,14 +202,63 @@ export default {
   },
   
 }
+//oanvänd constructor
+//function MenuItem(name, kCal, lactose, gluten, url, ) {
+  //  this.name = name;
+    //this.kCal = kCal;
+    //this.lactose=lactose;
+    //this.gluten=gluten;
+    //this.url = url;
+    
+//}
+
+
+
+
+
+
 </script>
 
 <style>
   #map {
-    width: 300px;
-    height: 300px;
-    background-color: red;
+    width: 1920px;
+    height: 1078px;
+    background: url('../../public/img/polacks.jpg');
+        
   }
+  #mapclass{
+  overflow: scroll;
+  height:800px;
+  width:800px;
+  
+}
+
+#dots {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    width:1920px;
+    height: 1078px;
+    cursor: crosshair;
+    
+  }
+  #dots div {
+    position: absolute;
+    background: rgb(253, 1, 1);
+    color: white;
+    border-radius: 10px;
+    width:20px;
+    height:20px;
+    text-align: center;
+    
+  }
+
+
+
+
+
+
   @import 'https://fonts.googleapis.com/css?family=Pacifico|Dosis';
   /*@import url("reset.css");*/
   body {
@@ -207,7 +283,6 @@ export default {
     text-align: center;
     overflow: hidden;
 }
-
 
 
 

@@ -4,12 +4,13 @@
           <h1>{{burger.name}}</h1> 
             
               <img v-bind:src="burger.url" alt="Bruger on fiire" style="width:500px;height:500px;">
-
+            
             <div style="width:800px; margin:0 auto; margin-left: 50px; margin-bottom: 25px;">
               <button v-on:click="IncreaseBurger">+ </button> 
               <button v-on:click="DecreaseBurger">-</button>
-              Amount {{burger.orderedBurgers}}
+              Amount {{this.amountOrdered  }}
             </div>
+
           
        
 
